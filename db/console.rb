@@ -5,6 +5,7 @@ require_relative('../models/ticket')
 require_relative('../models/screening')
 
 Ticket.delete_all()
+Customer.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
@@ -61,10 +62,20 @@ screening3 = Screening.new({
   })
 screening3.save()
 screening4 = Screening.new({
-  'film_id' => film3.id,
+  'film_id' => film2.id,
   'show_time' => 2045
   })
 screening4.save()
+screening5 = Screening.new({
+  'film_id' => film3.id,
+  'show_time' => 1800
+  })
+screening5.save()
+screening6 = Screening.new({
+  'film_id' => film3.id,
+  'show_time' => 2130
+  })
+screening6.save()
 
 ticket1 = Ticket.new({
   'customer_id' => customer1.id,
@@ -77,21 +88,26 @@ ticket2 = Ticket.new({
   'film_id' => film2.id
   })
 ticket2.save()
+ticket2.sell_ticket(customer1, film2)
 ticket3 = Ticket.new({
   'customer_id' => customer2.id,
   'film_id' => film3.id
   })
 ticket3.save()
+ticket3.sell_ticket(customer2, film3)
 ticket4 = Ticket.new({
   'customer_id' => customer3.id,
   'film_id' => film3.id
   })
 ticket4.save()
+ticket4.sell_ticket(customer3, film3)
+
 ticket5 = Ticket.new({
   'customer_id' => customer4.id,
   'film_id' => film2.id
   })
 ticket5.save()
+ticket5.sell_ticket(customer4, film2)
 
 # tickets_bought = customer1.films.length
 
