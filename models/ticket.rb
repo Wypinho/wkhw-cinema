@@ -1,4 +1,4 @@
-require('pry')
+# require('pry')
 require_relative('../db/sql_runner')
 require_relative('film')
 require_relative('customer')
@@ -45,7 +45,7 @@ class Ticket
   end
 
   def sell_ticket(customer, film)
-    binding.pry
+    # binding.pry
     customer.funds -= film.price
     sql = "UPDATE customers SET funds = $1 WHERE id = $2;"
     values = [customer.funds, customer.id]

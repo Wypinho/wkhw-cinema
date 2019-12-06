@@ -48,6 +48,10 @@ class Customer
     result = Film.map_films(films)
   end
 
+  def tickets_bought()
+    return films().length
+  end
+
   def self.map_customers(customer_data)
     customer_data.map{|customer| Customer.new(customer)}
   end

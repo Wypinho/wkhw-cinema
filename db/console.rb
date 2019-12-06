@@ -1,4 +1,4 @@
-# require('pry')
+require('pry')
 require_relative('../models/customer')
 require_relative('../models/film')
 require_relative('../models/ticket')
@@ -71,5 +71,7 @@ ticket5 = Ticket.new({
   })
 ticket5.save()
 
-# binding.pry
+# tickets_bought = customer1.films.length
+
+binding.pry
 nil
