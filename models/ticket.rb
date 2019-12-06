@@ -1,3 +1,4 @@
+require('pry')
 require_relative('../db/sql_runner')
 require_relative('film')
 require_relative('customer')
@@ -27,6 +28,7 @@ class Ticket
     result = map_tickets(tickets)
   end
 
+  # can't update, just left in to demonstrate how I'd do it if these fields were in an attr_accessor
   def update()
     sql = "UPDATE tickets SET customer_id = $1, film_id = $2 WHERE id = $3;"
     values = [@customer_id, @film_id, @id]
@@ -40,6 +42,14 @@ class Ticket
 
   def self.map_tickets(ticket_data)
     ticket_data.map{|ticket| Ticket.new(ticket)}
+  end
+
+  def sell_ticket(customer, film)
+    binding.pry
+    customer.funds -= film.price
+    sql = "UPDATE customers SET funds = $1 WHERE id = $2;"
+    values = [customer.funds, customer.id]
+    SqlRunner.run(sql, values)
   end
 
 end

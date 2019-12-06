@@ -1,4 +1,4 @@
-require('pry')
+# require('pry')
 require_relative('../models/customer')
 require_relative('../models/film')
 require_relative('../models/ticket')
@@ -49,6 +49,7 @@ ticket1 = Ticket.new({
   'film_id' => film1.id
   })
 ticket1.save()
+ticket1.sell_ticket(customer1, film1)
 ticket2 = Ticket.new({
   'customer_id' => customer1.id,
   'film_id' => film2.id
@@ -70,5 +71,5 @@ ticket5 = Ticket.new({
   })
 ticket5.save()
 
-binding.pry
+# binding.pry
 nil
