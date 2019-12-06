@@ -56,12 +56,15 @@ class Film
 
   def most_popular_showing()
     # binding.pry
-    sql = "SELECT * FROM screenings
-          WHERE film_id = $1;"
+    sql = "SELECT screenings.* FROM screenings
+          INNER JOIN tickets
+          ON tickets.screening_id = screenings.id
+          WHERE tickets.film_id = $1;"
     values = [@id]
     results = SqlRunner.run(sql, values)
     screenings = Screening.map_screenings(results)
     show_times = screenings.map{|screening| screening.show_time}
+    
   end
 
   def self.map_films(film_data)
