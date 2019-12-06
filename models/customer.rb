@@ -3,6 +3,9 @@ require_relative('film')
 
 class Customer
 
+  attr_reader :id
+  attr_accessor :name, :funds
+
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @name = options['name']
@@ -16,6 +19,16 @@ class Customer
     ) VALUES ($1, $2) RETURNING id;"
     values = [@name, @funds]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
+  end
+
+  def self.all()
+    sql = "SELECT * FROM customers;"
+    customers = SqlRunner.run(sql)
+    result = map_customers(customers)
+  end
+
+  def self.map_customers(customer_data)
+    customer_data.map{|customer| Customer.new(customer)}
   end
 
 end
