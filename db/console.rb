@@ -79,37 +79,41 @@ screening6.save()
 
 ticket1 = Ticket.new({
   'customer_id' => customer1.id,
-  'film_id' => film1.id
+  'film_id' => film1.id,
+  'screening_id' => screening1.id
   })
 ticket1.save()
 ticket1.sell_ticket(customer1, film1)
 ticket2 = Ticket.new({
   'customer_id' => customer1.id,
-  'film_id' => film2.id
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
   })
 ticket2.save()
 ticket2.sell_ticket(customer1, film2)
 ticket3 = Ticket.new({
   'customer_id' => customer2.id,
-  'film_id' => film3.id
+  'film_id' => film3.id,
+  'screening_id' => screening5.id
   })
 ticket3.save()
 ticket3.sell_ticket(customer2, film3)
 ticket4 = Ticket.new({
   'customer_id' => customer3.id,
-  'film_id' => film3.id
+  'film_id' => film3.id,
+  'screening_id' => screening6.id
   })
 ticket4.save()
 ticket4.sell_ticket(customer3, film3)
 
 ticket5 = Ticket.new({
   'customer_id' => customer4.id,
-  'film_id' => film2.id
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
   })
 ticket5.save()
 ticket5.sell_ticket(customer4, film2)
 
-# tickets_bought = customer1.films.length
-
+film1.most_popular_showing()
 binding.pry
 nil

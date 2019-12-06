@@ -1,5 +1,7 @@
+# require('pry')
 require_relative('../db/sql_runner')
 require_relative('customer')
+require_relative('screening')
 
 class Film
 
@@ -50,6 +52,16 @@ class Film
 
   def customers_watching()
     return customers().length
+  end
+
+  def most_popular_showing()
+    # binding.pry
+    sql = "SELECT * FROM screenings
+          WHERE film_id = $1;"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    screenings = Screening.map_screenings(results)
+    show_times = screenings.map{|screening| screening.show_time}
   end
 
   def self.map_films(film_data)
