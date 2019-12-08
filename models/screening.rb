@@ -4,13 +4,14 @@ require_relative('film')
 class Screening
 
   attr_reader :id, :film_id
-  attr_accessor :show_time, :tickets_sold
+  attr_accessor :show_time, :tickets_sold, :capacity
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @film_id = options['film_id'].to_i
-    @tickets_sold = options['tickets_sold']
+    @tickets_sold = options['tickets_sold'].to_i
     @show_time = options['show_time'].to_i
+    @capacity = options['capacity'].to_i
   end
 
   def save()

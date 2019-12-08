@@ -49,14 +49,16 @@ class Ticket
 
   def sell_ticket(customer, film, screening)
     # binding.pry
-    customer.funds -= film.price
-    screening.tickets_sold += 1
-    sql = "UPDATE customers SET funds = $1 WHERE id = $2;"
-    sql2 = "UPDATE screenings SET tickets_sold = $1 WHERE id = $2"
-    values = [customer.funds, customer.id]
-    values2 = [screening.tickets_sold, screening.id]
-    SqlRunner.run(sql, values)
-    SqlRunner.run(sql2, values2)
+    if screening.tickets_sold < screening.capacity
+      customer.funds -= film.price
+      screening.tickets_sold += 1
+      sql = "UPDATE customers SET funds = $1 WHERE id = $2;"
+      sql2 = "UPDATE screenings SET tickets_sold = $1 WHERE id = $2"
+      values = [customer.funds, customer.id]
+      values2 = [screening.tickets_sold, screening.id]
+      SqlRunner.run(sql, values)
+      SqlRunner.run(sql2, values2)
+    end
   end
 
 end

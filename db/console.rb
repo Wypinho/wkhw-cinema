@@ -49,37 +49,43 @@ film3.save()
 screening1 = Screening.new({
   'film_id' => film1.id,
   'show_time' => 1900,
-  'tickets_sold' => 0
+  'tickets_sold' => 0,
+  'capacity' => 2
   })
 screening1.save()
 screening2 = Screening.new({
   'film_id' => film1.id,
   'show_time' => 2100,
-  'tickets_sold' => 0
+  'tickets_sold' => 0,
+  'capacity' => 2
   })
 screening2.save()
 screening3 = Screening.new({
   'film_id' => film2.id,
   'show_time' => 1930,
-  'tickets_sold' => 0
+  'tickets_sold' => 0,
+  'capacity' => 2
   })
 screening3.save()
 screening4 = Screening.new({
   'film_id' => film2.id,
   'show_time' => 2045,
-  'tickets_sold' => 0
+  'tickets_sold' => 0,
+  'capacity' => 2
   })
 screening4.save()
 screening5 = Screening.new({
   'film_id' => film3.id,
   'show_time' => 1800,
-  'tickets_sold' => 0
+  'tickets_sold' => 0,
+  'capacity' => 2
   })
 screening5.save()
 screening6 = Screening.new({
   'film_id' => film3.id,
   'show_time' => 2130,
-  'tickets_sold' => 0
+  'tickets_sold' => 0,
+  'capacity' => 2
   })
 screening6.save()
 
@@ -119,6 +125,20 @@ ticket5 = Ticket.new({
   })
 ticket5.save()
 ticket5.sell_ticket(customer4, film2, screening3)
+ticket6 = Ticket.new({
+  'customer_id' => customer4.id,
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
+  })
+ticket6.save()
+ticket6.sell_ticket(customer4, film2, screening3)
+ticket7 = Ticket.new({
+  'customer_id' => customer4.id,
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
+  })
+ticket7.save()
+ticket7.sell_ticket(customer4, film2, screening3)
 
 film1.most_popular_showing()
 binding.pry

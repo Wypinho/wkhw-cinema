@@ -62,7 +62,7 @@ class Film
     values = [@id]
     results = SqlRunner.run(sql, values)
     screenings = Screening.map_screenings(results)
-    most_popular = screenings.max_by {|screening| screening.tickets_sold.to_i}
+    most_popular = screenings.max_by {|screening| screening.tickets_sold}
     return most_popular.show_time
   end
 
