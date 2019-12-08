@@ -120,6 +120,6 @@ ticket5 = Ticket.new({
 ticket5.save()
 ticket5.sell_ticket(customer4, film2, screening3)
 
- film1.most_popular_showing()
+film1.most_popular_showing()
 binding.pry
 nil

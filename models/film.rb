@@ -54,6 +54,19 @@ class Film
     return customers().length
   end
 
+# this work but not where there are 2 screenings with the same tickets sold. Thought it would return but but it just returns the first
+  def most_popular_showing()
+    # binding.pry
+    sql = "SELECT screenings.* FROM screenings
+          WHERE screenings.film_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    screenings = Screening.map_screenings(results)
+    most_popular = screenings.max_by {|screening| screening.tickets_sold.to_i}
+    return most_popular.show_time
+  end
+
+
   # def most_popular_showing()
   #   # binding.pry
   #   all_show_times = find_all_screenings()
