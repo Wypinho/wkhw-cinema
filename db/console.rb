@@ -48,32 +48,38 @@ film3.save()
 
 screening1 = Screening.new({
   'film_id' => film1.id,
-  'show_time' => 1900
+  'show_time' => 1900,
+  'tickets_sold' => 0
   })
 screening1.save()
 screening2 = Screening.new({
   'film_id' => film1.id,
-  'show_time' => 2100
+  'show_time' => 2100,
+  'tickets_sold' => 0
   })
 screening2.save()
 screening3 = Screening.new({
   'film_id' => film2.id,
-  'show_time' => 1930
+  'show_time' => 1930,
+  'tickets_sold' => 0
   })
 screening3.save()
 screening4 = Screening.new({
   'film_id' => film2.id,
-  'show_time' => 2045
+  'show_time' => 2045,
+  'tickets_sold' => 0
   })
 screening4.save()
 screening5 = Screening.new({
   'film_id' => film3.id,
-  'show_time' => 1800
+  'show_time' => 1800,
+  'tickets_sold' => 0
   })
 screening5.save()
 screening6 = Screening.new({
   'film_id' => film3.id,
-  'show_time' => 2130
+  'show_time' => 2130,
+  'tickets_sold' => 0
   })
 screening6.save()
 
@@ -83,28 +89,28 @@ ticket1 = Ticket.new({
   'screening_id' => screening1.id
   })
 ticket1.save()
-ticket1.sell_ticket(customer1, film1)
+ticket1.sell_ticket(customer1, film1, screening1)
 ticket2 = Ticket.new({
   'customer_id' => customer1.id,
   'film_id' => film2.id,
   'screening_id' => screening3.id
   })
 ticket2.save()
-ticket2.sell_ticket(customer1, film2)
+ticket2.sell_ticket(customer1, film2, screening3)
 ticket3 = Ticket.new({
   'customer_id' => customer2.id,
   'film_id' => film3.id,
   'screening_id' => screening5.id
   })
 ticket3.save()
-ticket3.sell_ticket(customer2, film3)
+ticket3.sell_ticket(customer2, film3, screening5)
 ticket4 = Ticket.new({
   'customer_id' => customer3.id,
   'film_id' => film3.id,
   'screening_id' => screening6.id
   })
 ticket4.save()
-ticket4.sell_ticket(customer3, film3)
+ticket4.sell_ticket(customer3, film3, screening6)
 
 ticket5 = Ticket.new({
   'customer_id' => customer4.id,
@@ -112,8 +118,8 @@ ticket5 = Ticket.new({
   'screening_id' => screening3.id
   })
 ticket5.save()
-ticket5.sell_ticket(customer4, film2)
+ticket5.sell_ticket(customer4, film2, screening3)
 
-film1.most_popular_showing()
+ film1.most_popular_showing()
 binding.pry
 nil

@@ -54,28 +54,35 @@ class Film
     return customers().length
   end
 
-  def most_popular_showing()
-    # binding.pry
-    sql = "SELECT screenings.* FROM screenings
-          INNER JOIN tickets
-          ON tickets.screening_id = screenings.id
-          WHERE tickets.film_id = $1;"
-    values = [@id]
-    results = SqlRunner.run(sql, values)
-    screenings = Screening.map_screenings(results)
-    attended_show_times = screenings.map{|screening| screening.show_time}
-    all_show_times = find_all_screenings()
-    
-  end
-
-  def find_all_screenings()
-    sql = "SELECT screenings.show_time FROM screenings
-           WHERE screenings.film_id = $1;"
-    values = [@id]
-    results = SqlRunner.run(sql, values)
-    screenings = Screening.map_screenings(results)
-    return screenings.map{|screening| screening.show_time}
-  end
+  # def most_popular_showing()
+  #   # binding.pry
+  #   all_show_times = find_all_screenings()
+  #   tickets_for_show_times = screenings_where_tickets_purchased()
+  #   for showing in all_show_times
+  #     tickets_for_show_times = screenings_where_tickets_purchased()
+  #
+  #   end
+  # end
+  #
+  # def find_all_screenings()
+  #   sql = "SELECT screenings.show_time FROM screenings
+  #          WHERE screenings.film_id = $1;"
+  #   values = [@id]
+  #   results = SqlRunner.run(sql, values)
+  #   screenings = Screening.map_screenings(results)
+  #   return screenings.map{|screening| screening.show_time}
+  # end
+  #
+  # def screenings_where_tickets_purchased()
+  #   sql = "SELECT screenings.* FROM screenings
+  #         INNER JOIN tickets
+  #         ON tickets.screening_id = screenings.id
+  #         WHERE tickets.film_id = $1;"
+  #   values = [@id]
+  #   results = SqlRunner.run(sql, values)
+  #   screenings = Screening.map_screenings(results)
+  #   return screenings.map{|screening| screening.show_time}
+  # end
 
   def self.map_films(film_data)
     film_data.map{|film| Film.new(film)}

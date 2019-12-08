@@ -2,6 +2,7 @@
 require_relative('../db/sql_runner')
 require_relative('film')
 require_relative('customer')
+require_relative('screening')
 
 class Ticket
 
@@ -46,12 +47,16 @@ class Ticket
     ticket_data.map{|ticket| Ticket.new(ticket)}
   end
 
-  def sell_ticket(customer, film)
+  def sell_ticket(customer, film, screening)
     # binding.pry
     customer.funds -= film.price
+    screening.tickets_sold += 1
     sql = "UPDATE customers SET funds = $1 WHERE id = $2;"
+    sql2 = "UPDATE screenings SET tickets_sold = $1 WHERE id = $2"
     values = [customer.funds, customer.id]
+    values2 = [screening.tickets_sold, screening.id]
     SqlRunner.run(sql, values)
+    SqlRunner.run(sql2, values2)
   end
 
 end
