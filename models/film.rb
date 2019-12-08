@@ -63,8 +63,18 @@ class Film
     values = [@id]
     results = SqlRunner.run(sql, values)
     screenings = Screening.map_screenings(results)
-    show_times = screenings.map{|screening| screening.show_time}
+    attended_show_times = screenings.map{|screening| screening.show_time}
+    all_show_times = find_all_screenings()
     
+  end
+
+  def find_all_screenings()
+    sql = "SELECT screenings.show_time FROM screenings
+           WHERE screenings.film_id = $1;"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    screenings = Screening.map_screenings(results)
+    return screenings.map{|screening| screening.show_time}
   end
 
   def self.map_films(film_data)

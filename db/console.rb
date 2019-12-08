@@ -5,7 +5,7 @@ require_relative('../models/ticket')
 require_relative('../models/screening')
 
 Ticket.delete_all()
-Customer.delete_all()
+Screening.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
